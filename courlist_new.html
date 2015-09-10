@@ -1,0 +1,794 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="高考命题研究专家一对一辅导、高三复习、高考辅导、高考复习、快速提高成绩、简单学习网、简单学习网注册、简单学习网下载、简单学习网登录" />
+    <meta name="keywords" content="简单学习网,简单课堂,按点听课,免费课" />
+    <title>简单学习网_简单课堂按点听课</title>
+    <link href="{- $web_css_root -}/css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="{- $web_css_root -}/css/report.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="{- $web_javascript_root -}/js/et.js"></script>
+    <script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/other/other.js"></script>
+    {-*
+    页面地址：http://192.168.1.111:7100/report/courselist/
+    创建时间：2012.07.10
+    创 建 者：meihua
+    创建原因：按点听课弹出课程选择
+    *-}
+</head>
+<body>
+<div class="wrap910 course_wrap">
+    <div class="course">
+        <div class="course_til">
+            <h1 class="r_courseBg">选课中心────请选择你想观看的视频课程</h1>
+            <div class="course_close r_courseBg" id="close_page"><a href="javascript:void(0);">关闭</a></div>
+        </div>
+        <div class="course_con clearfix">
+            <div class="course_menu left">
+                <dl>
+                    <dt name="listenhistory"><span>最近听课</span></dt>
+                </dl>
+                {- if $usertype eq 0 -}
+                <dl class="curOpen">
+                    <dt class="curClick" name="freecourse"><span>免费课程</span></dt>
+                    <dd id="freecourse"></dd>
+                    <dd class="loading_course fn-hide" id="freecourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl>
+                    <dt name="formalcourse"><span>正式课程</span></dt>
+                </dl>
+                {- else -}
+                <dl>
+                    <dt name="freecourse"><span>免费课程</span></dt>
+                    <dd id="freecourse"></dd>
+                    <dd class="loading_course fn-hide" id="freecourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl class="curOpen">
+                    <dt class="curClick" name="formalcourse"><span>正式课程</span></dt>
+                </dl>
+                {- /if -}
+                <dl>
+                    <dt name="experiencecourse"><span>体验课程</span></dt>
+                    <dd id="experiencecourse"></dd>
+                    <dd class="loading_course" id="experiencecourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl>
+                    <dt name="studycardcourse"><span>学习卡课程</span></dt>
+                    <dd id="studycardcourse"></dd>
+                    <dd class="loading_course" id="studycardcourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl>
+                    <dt name="easycashcourse"><span>简单币课程</span></dt>
+                    <dd id="easycashcourse"></dd>
+                    <dd class="loading_course" id="easycashcourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl>
+                    <dt name="personalitycourse"><span>弱科课程</span></dt>
+                    <dd id="personalitycourse"></dd>
+                    <dd class="loading_course" id="personalitycourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+                <dl>
+                    <dt name="lecturescourse"><span>定向讲座</span></dt>
+                    <dd id="lecturescourse"></dd>
+                    <dd class="loading_course" id="lecturescourse_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></dd>
+                </dl>
+            </div>
+            <div class="course_list right">
+                <div class="ui-tab-content" id="J_sortPanel">
+                    <div class="ui-tab-content-item fn-hide"> <!-- 免费课/体验课/定向讲座等的课程展现方式 -->
+                        <table class="ui-table ui-table-inbox">
+                            <thead>
+                            <tr>
+                                <th>课程名称</th>
+                                <th width="30%">关闭时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="textleft"><a href="#">高中免费课</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            <tr>
+                                <td class="textleft"><a href="#">"起步新学期"免费专家讲座</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            <tr>
+                                <td class="textleft"><a href="#">学习方法、心理辅导及家长讲座</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            <tr>
+                                <td class="textleft"><a href="#">高一同步复习免费课</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            <tr>
+                                <td class="textleft"><a href="#">高二同步复习免费课</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">高考总复习免费课</a></td>
+                                <td>永久有效</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="txtcenter" id="formalcourse_loading"></div>
+                    <div class="ui-tab-content-item sortPanel"><!-- 正式课展现方式含筛选 -->
+                        {- if $usertype eq 1 -}
+                        <div class="j_courseFilter fn-hide">
+                            <div class="courseFilter">
+                                <h3 class="fb">课程筛选</h3>
+                                <dl class="courseFilter-item mt5 fn-clear">
+                                    <dt>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科：</dt>
+                                    <dd class="subjects">
+                                    </dd>
+                                </dl>
+                                <dl class="courseFilter-item fn-clear">
+                                    <dt>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：</dt>
+                                    <dd class="grades">
+                                    </dd>
+                                </dl>
+                                <dl class="courseFilter-item fn-clear">
+                                    <dt>发布状态：</dt>
+                                    <dd class="publishs">
+                                        <a class="item-current" alt-value="-1"  title="所有" href="javascript:;">所有</a>
+                                        <a alt-value="已发布" href="javascript:;" title="已发布">已发布</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="courseSort t_corseSort">
+                                <dl class="fn-clear">
+                                    <dt>排列顺序：</dt>
+                                    <dd>
+                                        <a href="javascript:void(0);" class="ui-button ui-button-swhite j_sortYear" title="年度"><span>年度<i class="ui-icon ui-icon-descending-off"></i></span></a>
+                                        <a href="javascript:void(0);" class="ui-button ui-button-swhite j_sortLastListen" title="最近听过的课"><span>最近听过<i class="ui-icon ui-icon-descending-off"></i></span></a>
+                                        <a href="javascript:void(0);" class="ui-button ui-button-swhite j_sortLastUpdate" title="最新更新"><span>更新时间<i class="ui-icon ui-icon-descending-off"></i></span></a>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="courseListPanel">
+                                <div class="tableTitle">
+                                    <table class="ui-table ui-table-inbox">
+                                        <thead>
+                                        <tr class="">
+                                            <th>课程名称</th>
+                                            <th width="15%">发布时间</th>
+                                            <th width="15%">关闭时间</th>
+                                            <th width="12%">发布状态</th>
+                                            <th width="13%">年度</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="courseList fn-scrollbar">
+                                    <table class="ui-table ui-table-inbox"  id="J_sortPanelBody">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        {- else -}
+                         
+                        {- /if -}
+                    </div>
+                </div><!-- end ui-tab-content -->
+                <div class="txtcenter mart20" id="content_loading"><img src="{- $web_image_root -}/images/report/loading.gif" alt="正在加载" /></div>
+                <div class="courseMainContent fn-hide">
+                    <h3 class="courseTitle"><span class="titleName">未选择课程</span><a class="back" href="javascript:;" style="display:none;" title="返回"><span>返回</span></a></h3>
+                    <div class="course_list_t" id="courseLesson">
+
+                    </div>
+                    <div id="J_Contdiv" class="pop_new_p fn-hide">
+					</div>
+                </div>
+            </div><!-- end course_list -->
+        </div><!-- end course_con -->
+    </div>
+    <div id="test1" style="display:none">
+    {- $courseInfo -}
+	</div>
+</div>
+<script type="text/javascript">
+function displayEllipsis(element, maxchars, isvisibility){
+	var displayItem = $(element);
+	displayItem.each(function(){
+		var _this = this;
+		var textCon = $(_this).html();
+		if($(_this).text().length > maxchars){
+			$(_this).text($(_this).text().substring(0, maxchars - 2));
+			$(_this).html($(_this).html() + "...");
+            if(isvisibility != undefined && isvisibility == 1){
+                $(_this).css({"cursor": "pointer", "visibility": "visible"});
+            }
+            else {
+                $(_this).css({"cursor": "pointer", "display": "block"});
+            }
+			var x = 10;
+			var y = 20;
+			$(_this).mouseover(function(e){
+				var tooltip = "<div id='tooltip'>"+ textCon +"</div>"; //创建 div 元素
+				$("body").append(tooltip);
+				$("#tooltip")
+					.css({
+						"top": (e.pageY+y) + "px",
+						"left": (e.pageX+x) - 60  + "px",
+						"z-index": 99999
+					}).show("fast");
+			}).mouseout(function(){
+				$("#tooltip").remove();
+			}).mousemove(function(e){
+				$("#tooltip")
+					.css({
+						"top": (e.pageY+y) + "px",
+						"left": (e.pageX+x) - 60  + "px",
+						"z-index": 99999
+					});
+			});
+		}
+		else{
+			$(_this).css({"display": "block"});
+		}
+	});
+}
+</script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/libs/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/other/listen.js"></script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/other/clientcontrol.js"></script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/personal/courselist_new.js"></script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/personal/utility_new.js"></script>
+<script type="text/javascript" src="{- $web_javascript_root -}/js/etsrc/user/utility.js"></script>
+<script type="text/javascript" >
+	(function (factory) {
+		if (typeof define === 'function' && define.amd) {
+			define(['jquery'], factory);
+		} else if (typeof exports === 'object') {
+			factory(require('jquery'));
+		} else {
+			factory(jQuery);
+		}
+	}(function ($) {
+
+		var pluses = /\+/g;
+
+		function encode(s) {
+			return config.raw ? s : encodeURIComponent(s);
+		}
+
+		function decode(s) {
+			return config.raw ? s : decodeURIComponent(s);
+		}
+
+		function stringifyCookieValue(value) {
+			return encode(config.json ? JSON.stringify(value) : String(value));
+		}
+
+		function parseCookieValue(s) {
+			if (s.indexOf('"') === 0) {
+				s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+			}
+
+			try {
+				s = decodeURIComponent(s.replace(pluses, ' '));
+				return config.json ? JSON.parse(s) : s;
+			} catch(e) {}
+		}
+
+		function read(s, converter) {
+			var value = config.raw ? s : parseCookieValue(s);
+			return $.isFunction(converter) ? converter(value) : value;
+		}
+
+		var config = $.cookie = function (key, value, options) {
+
+			if (value !== undefined && !$.isFunction(value)) {
+				options = $.extend({}, config.defaults, options);
+
+				if (typeof options.expires === 'number') {
+					var days = options.expires, t = options.expires = new Date();
+					t.setTime(+t + days * 864e+5);
+				}
+
+				return (document.cookie = [
+					encode(key), '=', stringifyCookieValue(value),
+					options.expires ? '; expires=' + options.expires.toUTCString() : '', 
+					options.path    ? '; path=' + options.path : '',
+					options.domain  ? '; domain=' + options.domain : '',
+					options.secure  ? '; secure' : ''
+				].join(''));
+			}
+
+			var result = key ? undefined : {};
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+
+			for (var i = 0, l = cookies.length; i < l; i++) {
+				var parts = cookies[i].split('=');
+				var name = decode(parts.shift());
+				var cookie = parts.join('=');
+
+				if (key && key === name) {
+					result = read(cookie, value);
+					break;
+				}
+
+				if (!key && (cookie = read(cookie)) !== undefined) {
+					result[name] = cookie;
+				}
+			}
+
+			return result;
+		};
+
+		config.defaults = {};
+
+		$.removeCookie = function (key, options) {
+			if ($.cookie(key) === undefined) {
+				return false;
+			}
+
+			$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+			return !$.cookie(key);
+		};
+
+	}));
+
+    var userType = {- if $usertype -}{- $usertype -}{- else -}0{- /if -};
+    var courseList = undefined;
+    var islc = false;
+	var lenHistory = $.trim($("#test1").html()).length;
+	if(lenHistory != 0){ 
+		if(userType == 0){ 
+			$.cookie('freeCourse', $("#test1").html(), { expires: 7 });
+			courseList = eval("("+$.cookie('freeCourse')+")");
+		}else{ 
+			$.cookie('fomalCourse', $("#test1").html(), { expires: 7 });
+			courseList = eval("("+$.cookie('fomalCourse')+")");
+		}
+	}else{ 
+		if(userType == 0){ 
+			if($.trim($.cookie('freeCourse')).length !=0){ 
+				courseList = eval("("+$.cookie('freeCourse')+")");
+			}else{ 
+				courseList = undefined;
+			}
+		}else{ 
+			if($.trim($.cookie('fomalCourse')).length !=0){ 
+				courseList = eval("("+$.cookie('fomalCourse')+")");
+			}else{ 
+				courseList = undefined;
+			}
+		}		
+	}
+    //var courseList = {- if $courseInfo -}{- $courseInfo -}{- else -}undefined{- /if -};
+    var displayCourse = function (type){
+        et.personal.courselist.get_course(type);
+        itemHover(".course_menu dd a");
+    }
+    var toggleCourseType = function(course_type) {
+        switch (course_type) {
+            case 0 :
+                return "freecourse";
+            case 3:
+                return "studycardcourse";
+            case 7:
+                return "listenhistory";
+            case 6:
+                return "personalitycourse";
+            case 2:
+                return "experiencecourse";
+            case 1:
+                return "formalcourse";
+            case 5:
+                return "easycashcourse";
+            case 4:
+            	return "lecturescourse";
+        }
+    }
+    
+    function itemHover(elment){
+        var $elment = $(elment);
+        $elment.mouseover(function(){
+            $(this).addClass("curHover");
+        }).mouseout(function(){
+            $(this).removeClass("curHover");
+        });
+    }
+
+    itemHover(".course_menu dt");
+
+    function toggleCourse(targetObject){
+        var type = $(targetObject).attr("name");
+        if( type != "formalcourse"){
+            $(".back").hide();
+        }
+        $(targetObject).addClass("curClick");
+        $(targetObject).siblings().children().removeClass("curClick");
+        $(targetObject).parent().siblings().children().removeClass("curClick").children().removeClass("curClick");
+        $(targetObject).parent().siblings().removeClass("curOpen");
+        $(targetObject).parent().siblings().find("dd").hide();
+        if($(targetObject).parent().hasClass("curOpen")){
+        	$(targetObject).parent().removeClass("curOpen");
+        	$(targetObject).parent().find("dd").hide();
+            $("#J_sortPanel").hide();
+            $(".courseMainContent").hide();
+            if( type == "formalcourse"){
+                $("#J_sortPanel").show();
+                $(".back").hide();
+            }
+        }else{
+            if( type == "formalcourse"){
+                $("#J_sortPanel").show();
+                $(".back").hide();
+                $(".courseMainContent").hide();
+            }else{ 
+            	$("#J_sortPanel").hide();
+            	$(".courseMainContent").show();
+            }
+            $(targetObject).parent().addClass("curOpen");
+            $(targetObject).siblings("dd").show();
+            displayCourse(type);
+            displayEllipsis($(targetObject).siblings("dd").children(), 18);
+            $(".courseMainContent h3 span.titleName").html(" ");
+            $("#courseLesson table").html("&nbsp;");
+            if( type == "lecturescourse" && islc){
+            	setTimeout(function(){ 
+            		$(targetObject).siblings("dd").find("a").eq(0).trigger("click");	
+            	},200);            	
+            }
+        }
+    }
+
+    $(document).ready(function(){
+    	$(".course_menu dl").removeClass("curOpen");
+        $("#close_page").click(function(){
+            window.external.FetchCall("courselist:close");
+        });
+        $(".course_menu dt").click(function(e){
+            var that = e.currentTarget;
+            toggleCourse(that);
+        });
+
+        if (userType == 0){
+            et.personal.courselist.get_course("freecourse");
+            $("#content_loading").hide();
+            $(".courseTitle").hide();
+            $(".courseMainContent").removeClass("fn-hide");
+        }else{
+            et.personal.courselist.getFormalCourse("formalcourse");
+        }
+
+        //$(".course_menu dl.curOpen").removeClass("curOpen");
+
+        if( courseList != undefined ){
+            var initObject = $(".course_menu dt[name="+toggleCourseType(courseList.type)+"]");
+            islc = true;
+            toggleCourse(initObject);
+            function triggerDerictCourse(){
+                if( courseList.type ==1 ){
+                    $("a[id="+courseList.course_guid+"]").trigger("click");
+                }else{
+                    $("a[id="+courseList.real_guid+"]").trigger("click");
+                }
+            };
+            setTimeout(triggerDerictCourse,1000);
+        }
+
+        /****定向讲座弹出层(确认注册信息)****/
+
+        function lecturescourse_port(ele){   
+	        $.ajax({ 
+	        	url:etWebSiteUrl + "/api/my/userinfo/getuserinfo/",
+	        	dataType:"json",
+	        	type:"get",
+	        	success:function(data){ 
+	        		var compiled = "",
+	        			idistrict,
+						igradeHTML,
+						isSubmit = false,
+	        			userInfo = {
+							realName:data.userInfo.realname,
+							mobilePhone:data.userInfo.mobile,
+							iprovince:data.userInfo.province,
+							idistrict:data.userInfo.district,
+							isubdistrict:data.userInfo.subdistrict,
+							ischool:data.userInfo.school,
+							igrade:data.userInfo.grade,
+							userGrade:data.userInfo.user_grade,
+							userGradeList:""
+						},
+						iprovince = ["<option value>请选择省份名</option>"],
+						areaInfo = [
+					        ["安徽","合肥|芜湖|安庆|亳州|六安|宣城|宿州|巢湖|池州|淮北|淮南|滁州|蚌埠|铜陵|阜阳|马鞍山|黄山"],
+					        ["北京","北京"],
+					        ["天津","天津"],
+					        ["河北","石家庄|保定|唐山|廊坊|张家口|承德|沧州|秦皇岛|衡水|邢台|邯郸"],
+					        ["山西","太原|大同|临汾|吕梁|忻州|晋中|晋城|朔州|运城|长治|阳泉"],
+					        ["内蒙古","呼和浩特|包头|赤峰|呼伦贝尔|乌兰察布|通辽|乌海|兴安盟|巴彦淖尔|鄂尔多斯|锡林郭勒盟|阿拉善盟"],
+					        ["辽宁","沈阳|大连|葫芦岛|丹东|抚顺|朝阳|本溪|盘锦|营口|辽阳|铁岭|锦州|阜新|鞍山"],
+					        ["吉林","长春|吉林|通化|四平|松原|白城|白山|辽源|延边州"],
+					        ["黑龙江","哈尔滨|大庆|佳木斯|鹤岗|七台河|伊春|双鸭山|牡丹江|绥化|鸡西|黑河|齐齐哈尔|大兴安岭"],
+					        ["上海","上海"],
+					        ["江苏","南京|苏州|南通|宿迁|常州|徐州|扬州|无锡|泰州|淮安|盐城|连云港|镇江"],
+					        ["浙江","杭州|宁波|绍兴|温州|台州|嘉兴|丽水|湖州|舟山|衢州|金华"],
+					        ["福建","福州|厦门|泉州|漳州|三明|南平|宁德|莆田|龙岩"],
+					        ["江西","南昌|九江|抚州|赣州|上饶|吉安|宜春|新余|景德镇|萍乡|鹰潭"],
+					        ["山东","济南|青岛|威海|泰安|德州|日照|枣庄|济宁|淄博|滨州|潍坊|烟台|聊城|莱芜|菏泽|东营|临沂"],
+					        ["河南","郑州|洛阳|濮阳|安阳|三门峡|信阳|南阳|周口|商丘|平顶山|开封|新乡|济源|漯河|焦作|许昌|驻马店|鹤壁"],
+					        ["湖北","武汉|荆州|荆门|襄阳|仙桃|十堰|咸宁|天门|孝感|宜昌|恩施|潜江|神农架|鄂州|随州|黄冈|黄石"],
+					        ["湖南","长沙|株洲|湘潭|娄底|岳阳|常德|张家界|怀化|永州|湘西州|益阳|衡阳|邵阳|郴州"],
+					        ["广东","广州|深圳|东莞|茂名|中山|云浮|佛山|惠州|揭阳|梅州|汕头|汕尾|江门|河源|清远|湛江|潮州|珠海|肇庆|阳江|韶关"],
+					        ["广西","南宁|桂林|北海|柳州|玉林|崇左|来宾|梧州|河池|百色|贵港|贺州|钦州|防城港"],
+					        ["海南","海口|三亚|省直辖"],
+					        ["重庆","重庆"],
+					        ["四川","成都|绵阳|乐山|德阳|内江|南充|宜宾|巴中|广元|广安|攀枝花|泸州|眉山|自贡|资阳|达州|遂宁|雅安|甘孜州|凉山州|阿坝州"],
+					        ["贵州","贵阳|遵义|六盘水|安顺|毕节|铜仁|黔东南州|黔南州|黔西南州"],
+					        ["云南","昆明|玉溪|丽江|保山|临沧|普洱|曲靖|大理州|德宏州|怒江州|迪庆州|文山州|昭通|楚雄州|红河州|西双版纳州"],
+					        ["西藏","拉萨|日喀则|昌都|林芝|阿里|山南"],
+					        ["陕西","西安|咸阳|宝鸡|榆林|汉中|延安|渭南|铜川|商洛|安康"],
+					        ["甘肃","兰州|天水|张掖|武威|白银|酒泉|嘉峪关|定西|平凉|庆阳|金昌|陇南|临夏|甘南州"],
+					        ["青海","西宁|果洛州|海东|海北州|海南州|海西州|玉树州|黄南州"],
+					        ["宁夏","银川|中卫|吴忠|固原|石嘴山"],
+					        ["新疆","乌鲁木齐|克拉玛依|吐鲁番|塔城|喀什|伊犁州|巴音郭楞州|昌吉州|石河子|阿克苏|阿勒泰|克孜勒苏柯尔克孜州|博尔塔拉州|和田|哈密|五家渠|阿拉尔"]
+						    ],gradeHTML = "";
+
+						if(userInfo.userGrade == 1){ 
+							gradeHTML　=　'<option value="高三">新高三（2012年高中入学）</option><option value="高二">新高二（2013年高中入学）</option><option value="高一">新高一（2014年高中入学）</option>';
+						}else if(userInfo.userGrade == 2){ 
+							gradeHTML　=　'<option value="高三">新高三（2012年高中入学）</option><option value="高二">新高二（2013年高中入学）</option><option value="高一">新高一（2014年高中入学）</option>';
+						}else if(userInfo.userGrade == 3){ 
+							 gradeHTML　=　'<option value="高三">新高三（2012年高中入学）</option><option value="高二" >新高二（2013年高中入学）</option><option value="高一" >新高一（2014年高中入学）</option>';
+						}else if(userInfo.userGrade == 4){ 
+	                    	 gradeHTML　=　'<option value="初三">新初三（2012年初中入学）</option><option value="初二">新初二（2013年初中入学）</option><option value="初一">新初一（2014年初中入学）</option>';
+						}else if(userInfo.userGrade == 5){ 
+							gradeHTML　=　'<option value="初三">新初三（2012年初中入学）</option><option value="初二">新初二（2013年初中入学）</option><option value="初一">新初一（2014年初中入学）</option>';
+						}else if(userInfo.userGrade == 6){ 
+								gradeHTML　=　'<option value="初三">新初三（2012年初中入学）</option><option value="初二">新初二（2013年初中入学）</option><option value="初一">新初一（2014年初中入学）</option>';
+						}else if(userInfo.userGrade == 7){ 
+							 gradeHTML　=　'<option value="九年级">九年级(2011年初中入学)</option><option value="八年级">八年级(2012年初中入学)</option><option value="七年级">七年级(2013年初中入学)</option><option value="六年级">六年级(2014年初中入学)</option>';
+						}else if(userInfo.userGrade == 8){ 
+							  gradeHTML　=　'<option value="九年级">九年级(2011年初中入学)</option><option value="八年级">八年级(2012年初中入学)</option><option value="七年级">七年级(2013年初中入学)</option><option value="六年级">六年级(2014年初中入学)</option>';
+						}else if(userInfo.userGrade == 9){ 
+	 							gradeHTML　=　'<option value="九年级">九年级(2011年初中入学)</option><option value="八年级">八年级(2012年初中入学)</option><option value="七年级">七年级(2013年初中入学)</option><option value="六年级">六年级(2014年初中入学)</option>';
+						}else if(userInfo.userGrade == 1){ 
+								gradeHTML　=　'<option value="九年级">九年级(2011年初中入学)</option><option value="八年级">八年级(2012年初中入学)</option><option value="七年级">七年级(2013年初中入学)</option><option value="六年级">六年级(2014年初中入学)</option>';
+						}
+
+						userInfo.userGradeList = gradeHTML;
+
+	        			if(data.userInfo.updated == "1"){ 
+	        				compiled = _.template('<div class="psn_popmain popmain2"><h2>请确认你的注册信息！</h2><ul class="psn_popmain_tips"><li><strong>郑重提醒：</strong>简单学习网已经详细了解了你学校的学习进度，为你的学校开放了同步的定向讲座。为确保你能听到的讲座的具体内容与你的学校信息完全对应。请检查确认以下信息是否准确。如果不准确，请你修正，否则无法听到你的学校向简单学习网申请的同步讲座。</li><li class="psn_popmain_waring"><strong>特别提示：</strong>你仅可以修改一次，此后不能再修改。（有<span style="color:#f00">*</span>号的为必填）</li></ul><div class="psn_popfield userinfo"><div class="ui-form-area"><label for="id_realName" class="ui-form-label">姓名：</label><input type="text" maxlength="30" id="id_realName" name="realName" class="ui-form-text" value="<%=realName%>"></div><div class="ui-form-area"><label for="id_mobilePhone" class="ui-form-label"><span class="frose">*</span>手机：</label><input type="text" maxlength="20" id="id_mobilePhone" name="mobilePhone" class="ui-form-text"  value="<%=mobilePhone%>"><span class="t_warn_tip">请输入正确的手机号</span></div><div class="ui-form-select"><label for="iprovince" class="ui-form-label disabled"><span class="frose">*</span>省份：</label><select id="iprovince" class="fix disabled" disabled><option value="">请选择省份名</option><option value="<%=iprovince%>" selected><%=iprovince%></option></select></div><div class="ui-form-select"><label for="idistrict" class="ui-form-label"><span class="frose">*</span>市：</label><select id="idistrict" class="fix disabled" disabled><option value="">请选择市</option><option value="<%=idistrict%>" selected><%=idistrict%></option></select></div><div class="ui-form-select"><label for="isubdistrict" class="ui-form-label"><span class="frose">*</span>地区/县：</label><select id="isubdistrict" class="fix disabled" disabled><option value="">请选择地区/县</option><option value="<%=isubdistrict%>" selected><%=isubdistrict%></option></select></div><div class="ui-form-select"><label for="ischool" class="ui-form-label"><span class="frose">*</span>学校：</label><select id="ischool" class="disabled" disabled><option value="">请选择学校</option><option value="<%=ischool%>" selected><%=ischool%></option></select></div><div class="ui-form-area"><label for="igrade" class="ui-form-label disabled"><span class="frose">*</span>年级：</label><select id="igrade" class="disabled" disabled><%=userGradeList%></select></div><div id="iclassname" style="display:none" class="ui-form-area"><label for="iclassname_select" class="ui-form-label"><span class="frose">*</span>班级：</label><select id="iclassname_select"><option value="" selected>请选择班级名称</option></select></div><div id="classify_area" class="ui-form-area" style="display:block"><label for="iclassify" class="ui-form-label"><span class="frose">*</span>分科：</label><select id="iclassify"><option value="0" selected>请选择文理科</option><option value="1">理科</option><option value="2">文科</option></select><span class="t_warn_tip">请选择文理科</span></div><div class="popsub textcenter"><a class="ui-button ui-button-lblue pop_subbtn" href="javascript:;">确定</a></div></div><div class="t_popsub_alert"><div class="course_til"><h1>来自网页的消息</h1><div class="course_close r_courseBg" id="close_page"><a href="javascript:void(0);">确定</a></div></div><div class="t_pop_content"><p><a></a>对不起，当前没有开放定向讲座</p><a class="t_popsub_confirm">确定</a></div></div></div>');
+	        					$(ele).html(compiled(userInfo));
+	        			}else if(data.userInfo.updated == "0"){ 
+	        				compiled = _.template('<div class="psn_popmain popmain2"><h2>请确认你的注册信息！</h2><ul class="psn_popmain_tips"><li><strong>郑重提醒：</strong>简单学习网已经详细了解了你学校的学习进度，为你的学校开放了同步的定向讲座。为确保你能听到的讲座的具体内容与你的学校信息完全对应。请检查确认以下信息是否准确。如果不准确，请你修正，否则无法听到你的学校向简单学习网申请的同步讲座。</li><li class="psn_popmain_waring"><strong>特别提示：</strong>你仅可以修改一次，此后不能再修改。（有<span style="color:#f00">*</span>号的为必填）</li></ul><div class="psn_popfield userinfo"><div class="ui-form-area"><label for="id_realName" class="ui-form-label">姓名：</label><input type="text" maxlength="30" id="id_realName" name="realName" class="ui-form-text" value="<%=realName%>"></div><div class="ui-form-area"><label for="id_mobilePhone" class="ui-form-label"><span class="frose">*</span>手机：</label><input type="text" maxlength="20" id="id_mobilePhone" name="mobilePhone" class="ui-form-text"  value="<%=mobilePhone%>"><span class="t_warn_tip">请输入正确的手机号</span></div><div class="ui-form-select"><label for="iprovince" class="ui-form-label"><span class="frose">*</span>省份：</label><select id="iprovince" class="fix"><option value="">请选择省份名</option></select><span class="t_warn_tip">请选择省份名</span></div><div class="ui-form-select"><label for="idistrict" class="ui-form-label"><span class="frose">*</span>市：</label><select id="idistrict" class="fix"><option value="">请选择市</option><option value="<%=idistrict%>" selected><%=idistrict%></option></select><span class="t_warn_tip">请选择市</span></div><div class="ui-form-select"><label for="isubdistrict" class="ui-form-label"><span class="frose">*</span>地区/县：</label><select id="isubdistrict" class="fix"><option value="">请选择地区/县</option><option value="<%=isubdistrict%>" selected><%=isubdistrict%></option></select><span class="t_warn_tip">请选择地区/县</span></div><div class="ui-form-select"><label for="ischool" class="ui-form-label"><span class="frose">*</span>学校：</label><select id="ischool" ><option value="">请选择学校</option><option value="<%=ischool%>" selected><%=ischool%></option></select><span class="t_warn_tip">请选择学校</span></div><div class="ui-form-area"><label for="igrade" class="ui-form-label"><span class="frose">*</span>年级：</label><select id="igrade"><%=userGradeList%></select><span class="t_warn_tip">请选择年级</span></div><div id="iclassname" style="display:none" class="ui-form-area"><label for="iclassname_select" class="ui-form-label"><span class="frose">*</span>班级：</label><select id="iclassname_select"><option value="" selected>请选择班级名称</option></select></div><div id="classify_area" class="ui-form-area" style="display:block"><label for="iclassify" class="ui-form-label"><span class="frose">*</span>分科：</label><select id="iclassify"><option value="0" selected>请选择文理科</option><option value="1">理科</option><option value="2">文科</option></select><span class="t_warn_tip">请选择文理科</span></div><div class="popsub textcenter"><a class="ui-button ui-button-lblue pop_subbtn" href="javascript:;">确定</a></div></div><div class="t_popsub_alert"><div class="course_til"><h1>来自网页的消息</h1><div class="course_close r_courseBg" id="close_page"><a href="javascript:void(0);">确定</a></div></div><div class="t_pop_content"><p><a></a>对不起，当前没有开放定向讲座</p><a class="t_popsub_confirm">确定</a></div></div></div>');
+
+	        					$(ele).html(compiled(userInfo));
+
+								for(var i = 0;i < areaInfo.length;i++){ 
+									if(areaInfo[i][0] == userInfo.iprovince){ 
+										iprovince.push("<option value='" + areaInfo[i][0] + "' selected>" + areaInfo[i][0] + "</option>");	
+									}else{ 
+										iprovince.push("<option value='" + areaInfo[i][0] + "'>" + areaInfo[i][0] + "</option>");		
+									}
+								}
+
+								$("#iprovince").html(iprovince.join(""));
+
+								$("#id_mobilePhone").on("blur",function(){
+									var mobile = $("#id_mobilePhone").val(); 
+										if(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile)){ 
+											$(this).parent().find(".t_warn_tip").hide();
+										}else{ 
+											$(this).parent().find(".t_warn_tip").show();
+										}
+								});
+
+								$("#iprovince").on("change",function(){ 
+									var idistrict = ["<option value=''>请选择市</option>"],
+										curIprovinceIndex = 0,
+										city = [],
+										curIprovince = $(this).val();
+
+										for(var i = 0;i < areaInfo.length;i++){ 
+											if(areaInfo[i][0] == curIprovince){ 
+												curIprovinceIndex = i;
+												break;
+											}
+										}
+										city = areaInfo[curIprovinceIndex][1].split("|");
+
+										for(var j = 0;j < city.length;j++){ 
+											if(city[j] == userInfo.idistrict){ 
+											    idistrict.push("<option value='" + city[j] + "' selected>" + city[j] + "</option>");	
+										    }else{ 
+											    idistrict.push("<option value='" + city[j] + "'>" + city[j] + "</option>");		
+										    }
+										}
+
+										$("#idistrict").html(idistrict.join(""));
+
+										if($(this).val()){ 
+											$(this).parent().find(".t_warn_tip").hide();
+										}else{ 
+											$(this).parent().find(".t_warn_tip").show();
+										}
+
+								});
+
+								$("#idistrict").on("change",function(){ 
+									var province = $("#iprovince").val(),
+										city = $(this).val(),
+										isubdistrict = ["<option value=''>请选择地区/县</option>"];
+
+										$.ajax({ 
+											url:etWebSiteUrl + "/api/district/area/" + encodeURIComponent(province) + "/" + encodeURIComponent(city) + "/",
+											type:"GET",
+											dataType:"json",
+											success:function(data){ 
+												for(var i = 0;i< data.length;i++){ 
+													if(userInfo.isubdistrict == data[i].districtname){ 
+													    isubdistrict.push("<option value='" + data[i].districtname + "' selected>" + data[i].districtname + "</option>");	
+												    }else{ 
+													    isubdistrict.push("<option value='" + data[i].districtname + "'>" + data[i].districtname + "</option>");		
+												    }
+												}
+												$("#isubdistrict").html(isubdistrict.join(""));
+											}
+										});
+
+										if($(this).val()){ 
+											$(this).parent().find(".t_warn_tip").hide();
+										}else{ 
+											$(this).parent().find(".t_warn_tip").show();
+										}
+								});
+
+								$("#isubdistrict").on("change",function(){ 
+									var province = $("#iprovince").val(),
+										city = $("#idistrict").val();
+										subdistrict = $(this).val();
+										school = ["<option value=''>请选择学校</option>"];
+
+										$.ajax({ 
+											url:etWebSiteUrl + "/api/district/school/" + encodeURIComponent(province) + "/" + encodeURIComponent(city) + "/" + encodeURIComponent(subdistrict) + "/",
+											type:"GET",
+											dataType:"json",
+											success:function(data){ 
+												for(var i = 0;i< data.length;i++){ 
+													if(userInfo.ischool == data[i].districtname){ 
+													    school.push("<option value='" + data[i].districtname + "' selected>" + data[i].districtname + "</option>");	
+												    }else{ 
+													    school.push("<option value='" + data[i].districtname + "'>" + data[i].districtname + "</option>");		
+												    }
+												}
+												$("#ischool").html(school.join(""));
+											}
+										});
+
+										if($(this).val()){ 
+											$(this).parent().find(".t_warn_tip").hide();
+										}else{ 
+											$(this).parent().find(".t_warn_tip").show();
+										}
+								});
+
+								function invalid(ele){ 
+
+									var mobile = $("#id_mobilePhone"); 	
+
+										for(var i = 0;i < ele.length;i++){ 
+											if($("#" + ele[i]).val() != "0" && $("#" + ele[i]).val()){ 
+												isSubmit = true;
+											}else{ 
+												isSubmit = false;
+												$("#" + ele[i]).parent().find(".t_warn_tip").show();
+											}											
+										}
+										if(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile.val())){ 
+											mobile.parent().find(".t_warn_tip").hide();
+										}else{ 
+											mobile.parent().find(".t_warn_tip").show();
+											isSubmit = false;
+										}
+								}
+
+								function selChange(ele){ 
+									for(var i = 0;i < ele.length;i++){ 
+										$("#" + ele[i]).on("change",function(){ 
+											if($(this).val() != "0" && $(this).val()){ 
+												$(this).parent().find(".t_warn_tip").hide();	
+											}else{ 
+												$(this).parent().find(".t_warn_tip").show();	
+											}
+										});
+									}
+								}
+								selChange(["ischool","igrade","iclassify"]);
+								$("#iprovince").trigger("change");
+								$("#idistrict").trigger("change");
+								$("#isubdistrict").trigger("change");
+								
+	        			};					
+	        			
+	        			/****提交确认信息*****/
+
+						$(".pop_subbtn").on("click",function(){ 
+
+							isSubmit = false;
+							
+							/***所需提交的参数***/
+
+							var param = { 
+								realname:$("#id_realName").val(),
+								telephone:data.userInfo.telephone,
+								mobile:$("#id_mobilePhone").val(),
+								province:$("#iprovince").val(),
+								city:$("#idistrict").val(),
+								area:$("#isubdistrict").val(),
+								school:$("#ischool").val(),
+								gradeName:$("#igrade").val(),
+								userFigure:data.userInfo.figure,
+								gradetype:data.userInfo.gradetype,
+								subjectClassify:$("#iclassify").val(),
+								className:$("#iclassname_select").val()
+							};
+
+							invalid(["id_mobilePhone","iprovince","idistrict","isubdistrict","ischool","igrade","iclassify"]);
+
+							if(isSubmit){ 
+								$.ajax({ 
+									url:etWebSiteUrl + "/api/my/info/joindirectlesson/",
+									type:"put",
+									data:param,
+									dataType:"json",
+									success:function(data){ 
+										if(data == true){ 
+											$("#J_Contdiv").hide();
+											et.personal.utility.get_course(et.personal.courselist.authtype, et.personal.courselist.get_course_callback);
+											setTimeout(function(){ 
+												$("#lecturescourse").find("a").eq(0).trigger("click");
+											},300);
+										}
+									},
+									error:function(data){ 
+
+										/***
+										*如果没有定向讲座就弹出提示信息,单击确认按钮，关闭提示信息
+										*/
+
+										$(".t_popsub_alert").show();
+										$(".t_popsub_confirm,#close_page").on("click",function(){ 
+											$(this).parent().parent().hide();
+										});
+									}
+								});
+							}else{ 
+								alert("信息填写不完整!");
+							}
+						});
+	        	}
+	        });
+		}
+		
+		lecturescourse_port("#J_Contdiv");
+
+        window.external.FetchCall("courselist:document_ready");
+    });
+
+    $("body").on("click",".courseMainContent a.back",function(){
+        $("#J_sortPanel").show();
+        $(".courseMainContent").hide();
+    });
+    et.personal.courselist.lessonHover = function(){ 
+	}
+	/***导出mp3***/
+	et.personal.courselist.exportMp3 = function(realguid, courseguid, lessonguid,lessonname) {
+	}
+	/***下载讲义***/
+	et.personal.courselist.notesDownLoad = function(realguid, courseguid, lessonguid,lessonname) {
+	}
+	/***下载课后练习***/
+	et.personal.courselist.t_practiceDownLoad = function(realguid, courseguid, lessonguid,lessonname) {
+	}
+</script>
+
+</body>
+</html>

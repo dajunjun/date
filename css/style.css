@@ -1,0 +1,129 @@
+
+html {
+    -ms-touch-action: none;
+    /* 禁止使用设备默认手势*/
+}
+
+body, ul, li {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    font-size: 12px;
+    font-family: ubuntu, helvetica, arial;
+    overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
+#wrapper, #wrapper2, #wrapper3 {
+    width: 33.3%;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+
+}
+
+#scroller, #scroller2, #scroller3 {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none; /*解决横屏字体放大问题*/
+
+}
+
+#scroller ul, #scroller2 ul, #scroller3 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#scroller li, #scroller2 li, #scroller3 li {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+#choiceCity {
+    text-align: center;
+    position: relative;
+    margin: 25% auto 0;
+    width: 80%;
+    overflow: hidden;
+    background: #eee;
+    /*display: none;*/
+
+}
+
+.selectedLine1, .selectedLine2 {
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    height: 1px;
+    background: #ccc;
+}
+
+.selectedLine2 {
+    top: 80px;
+}
+
+.active {
+    background: #21ade5;
+    color: white;
+}
+
+#address {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin: 20px 0 0 20px;
+    box-sizing: border-box;
+}
+
+#address span {
+    display: block;
+    float: left;
+}
+
+.falseAdd {
+    float: left;
+    height: 100%;
+    border: 1px #ccc solid;
+    width: 70%;
+    line-height: 30px;
+    padding: 0 0 0 10px;;
+}
+
+.tempDiv {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#btn {
+    background: #21ade5;
+    width: 50vw;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    height: 2em;
+    margin: 20px auto;
+}
